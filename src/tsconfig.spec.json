@@ -8,6 +8,10 @@
     "types": [
       "jasmine",
       "node"
+    ],
+    "experimentalDecorators": [
+      true,
+      false
     ]
   },
   "files": [
