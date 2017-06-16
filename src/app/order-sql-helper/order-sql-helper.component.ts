@@ -82,7 +82,7 @@ export class OrderSqlHelperComponent implements OnInit {
   }
 
   getBadOrdersSQL(): void {
-    var sql = `db2 "select DISTINCT orders.orders_id,orders.ormorder,pattrvalue.stringvalue AS SALES_CHANNEL_ID,orders.status,orderblk.resolved,orderitems.shipmode_id, shipmode.carrier,orders.timeplaced,orders.lastupdate from orders left outer join orderblk on (orders.orders_id = orderblk.orders_id) left outer join orderitems on (orderitems.orders_id = orders.orders_id) left outer join shipmode on (orderitems.shipmode_id = shipmode.shipmode_id) left outer join pattrvalue on (orderitems.orderitems_id = pattrvalue.orderitems_id AND pattrvalue.pattribute_id = 33) where orders.status in ('F','U') AND orders.timeplaced > (CURRENT DATE - 3 DAYS) order by orders_id"\n\n`;
+    var sql = `db2 "select DISTINCT orders.orders_id,orders.ormorder,pattrvalue.stringvalue AS SALES_CHANNEL_ID,orders.status,orderblk.resolved,orderitems.shipmode_id, shipmode.carrier,orders.timeplaced,orders.lastupdate from orders left outer join orderblk on (orders.orders_id = orderblk.orders_id) left outer join orderitems on (orderitems.orders_id = orders.orders_id) left outer join shipmode on (orderitems.shipmode_id = shipmode.shipmode_id) left outer join pattrvalue on (orderitems.orderitems_id = pattrvalue.orderitems_id AND pattrvalue.pattribute_id = 33) where orders.status in ('F','U') AND orders.timeplaced > (CURRENT DATE - 3 DAYS) AND pattrvalue.stringvalue != '3434' order by orders_id"\n\n`;
     this.outputArea2 = sql.toString();
   }
 
