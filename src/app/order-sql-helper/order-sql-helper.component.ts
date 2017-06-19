@@ -57,12 +57,12 @@ export class OrderSqlHelperComponent implements OnInit {
   }
 
   exportPackingSlip(): void {
-    let uOrderIds = this.getValueAsArray(this.inputArea1);
-    let orderIds = this.getValueAsArray(this.inputArea2);
+    let uOrderIds = this.getValueAsArray(this.inputArea1 | "");
+    let orderIds = this.getValueAsArray(this.inputArea2 | "");
     let sqlLines = _.zipWith(uOrderIds, orderIds, function(uOrderId, orderId) {
       return `db2 "export to ${uOrderId}_Order_XML of del lobs to /tmp/ select packslipxml from ordrelease where orders_id = ${orderId}"\n`;
     });
-    this.outputArea2 = '';
+    this.outputArea2 = 'cd /tmp\n';
     this.outputArea1 = '';
     for (const line of sqlLines){
       this.outputArea2 += line;
