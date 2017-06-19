@@ -57,8 +57,10 @@ export class OrderSqlHelperComponent implements OnInit {
   }
 
   clearInputs(): void {
-    let textAreas = [this.inputArea1,this.inputArea2,this.outputArea1,this.outputArea2]
-    textAreas.forEach((ia) => ia.value='')
+    this.inputArea1=''
+    this.inputArea2=''
+    this.outputArea1=''
+    this.outputArea2=''
   }
 
   exportPackingSlip(): void {
